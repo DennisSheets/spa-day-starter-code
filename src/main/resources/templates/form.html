@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <form method = 'post' action="/profile">
+        Name: <br>
+        <input type = 'text' name = 'name'>
+
+        <p>Skin type:</p>
+
+        <select name = 'skintype'>
+            <option value = 'oily'>Oily</option>
+            <option value = 'combination'>Combination</option>
+            <option value = 'normal'>Normal</option>
+            <option value = 'dry'>Dry</option>
+        </select>
+
+        <p>Manicure or Pedicure?<p>
+        <select name = 'manipedi'>
+            <option value = 'manicure'>Manicure</option>
+            <option value = 'pedicure'>Pedicure</option>
+            <option value = 'both'>Manicure & Pedicure</option>
+            </select><br>
+        <br><input type = 'submit' value = 'Submit'>
+
+    </form>
+
+</body>
+</html>

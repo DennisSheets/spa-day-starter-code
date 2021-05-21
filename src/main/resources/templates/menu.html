@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title>Spa Menu</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-</head>
+<head th:replace ="fragments :: head"></head>
+
 <body>
-<h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
-</div>
-<div id = "servicesMenu">
-</div>
+    <h1>My Super Fancy Spa</h1>
+
+    <div id = "clientProfile">
+        <h2>My Profile</h2>
+        <p th:text="${name}"></p>
+        <p th:text="${skintype}"></p>
+        <p th:text="${manipedi}"></p>
+    </div>
+
+    <div id = "servicesMenu">
+        <h2>Menu of Available Services</h2>
+        <table>
+            <tr><td><h3>Facial Treatments</h3></td></tr>
+            <tr><td><p th:replace = "fragments :: recommendedServices"></p></td></tr>
+
+            <tr th:each = "facial: ${appropriateFacials}">
+                <td th:text = "${facial}" ></td>
+            </tr>
+
+
+            <tr th:unless = '${manipedi.equals("pedicure")}' >
+                <td><h3>Manicure</h3></td>
+            </tr>
+            <tr th:unless = '${manipedi.equals("pedicure")}' >
+                <td><p th:replace ="fragments :: manicureDescription"></p></td>
+            </tr>
+
+            <tr th:unless = "${manipedi.equals('manicure')}">
+                <td><h3>Pedicure</h3></td>
+            </tr>
+            <tr th:unless = "${manipedi.equals('manicure')}">
+                <td>
+                    <p th:replace ="fragments :: pedicureDescription"></p>
+                </td>
+            </tr>
+
+        </table>
+
+
+
+    </div>
 </body>
 </html>
