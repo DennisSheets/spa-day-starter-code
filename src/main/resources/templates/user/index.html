@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-    <a href="/">Menu</a>
+<head th:replace="fragments :: userHead"></head>
+<body class="container">
+    <header th:replace ="fragments :: userHeader"></header>
     <h1 th:text = "${welcomeMessage}"></h1>
-<body>
+
+    <p th:unless="${users} and ${users.size()}">No Users!</p>
+
+    <table class="table table-striped">
+        <tr>
+             <th>Username</th>
+        </tr>
+
+        <tr th:each = "user: ${users}">
+            <td th:text = "${user.username}"></td>
+            <!--<td>
+                <a th:href="@{/users/details/{id}(id=${user.id})}">details</a>
+            </td> -->
+        </tr>
+    </table>
 
 </body>
 </html>
