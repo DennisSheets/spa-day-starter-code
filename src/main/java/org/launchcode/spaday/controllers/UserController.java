@@ -14,19 +14,21 @@ public class UserController {
 
    @GetMapping("add")
    public String displayAddUserForm(){
-      System.out.println("GetMapping - load the form by going to add.html in user/add");
       return "user/add";
 }
 
    @PostMapping ("add")
    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
-      System.out.println("Fucking Test");
 
       if(verify.equals(user.getPassword())){
-         System.out.println("The big if");
          model.addAttribute("welcomeMessage","Welcome " + user.getUsername() + " !");
          return "user/index";
       }
+         model.addAttribute("systemMessage",user.getUsername() +
+                 " , The passwords do not match!");
+         model.addAttribute("userName",user.getUsername());
+         model.addAttribute("email",user.getEmail());
+
          return "user/add";
    }
 
