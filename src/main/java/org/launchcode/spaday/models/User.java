@@ -15,9 +15,7 @@ public class User {
     @Size(min=6, message = "Your password must contain at least 6 characters!")
     private String password;
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String username, String email, String password) {
         this();
