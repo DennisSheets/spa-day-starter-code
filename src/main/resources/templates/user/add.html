@@ -6,32 +6,32 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form method = 'post' th:action="@{/user}">
+    <p th:replace = "fragments :: header"></p>
+    <form method = "post" th:action="@{/user/add}"> <!-- th:action="@{/user}"   action="/user"  -->
         <label>
             Username:<br>
             <!-- <input type = 'text' name = 'username' th:value="${username}"> -->
             <input th:field="${user.username}">
         </label><br>
-
+        <p th:errors="${user.username}"></p>
         <label>
             Email:<br>
             <!-- <input type = 'email' name = 'email' th:value="${email}"> -->
             <input th:field="${user.email}">
         </label><br>
-
+        <p th:errors="${user.email}"></p>
         <label>
             Password:<br>
             <!-- <input type = 'password' name = 'password'> -->
             <input th:field="${user.password}">
         </label><br>
-
+        <p th:errors="${user.password}"></p>
         <label>
             Verify Password:<br>
             <input type = 'password' name = 'verify'>
             <!-- <input th:field="${verify}"> -->
         </label><br>
-
-        <p th:text="${error}"></p>
+        <p class="error"  th:text="${error}"></p>
 
         <input type = 'submit' value = 'Sign Up'>
     </form>

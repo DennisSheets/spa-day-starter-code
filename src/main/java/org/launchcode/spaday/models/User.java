@@ -15,13 +15,20 @@ public class User {
     @Size(min=6, message = "Your password must contain at least 6 characters!")
     private String password;
 
-    public User() {}
+    private int id;
+    private static int nextId;
 
     public User(String username, String email, String password) {
         this();
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
+        this.id = nextId;
+        nextId++;
+
     }
 
     public String getUsername() {
@@ -47,4 +54,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
