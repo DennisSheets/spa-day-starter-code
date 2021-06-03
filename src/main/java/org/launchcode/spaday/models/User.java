@@ -26,7 +26,7 @@ public class User {
     }
 
     public User() {
-        this.id = nextId;
+        id = nextId;
         nextId++;
 
     }
@@ -55,5 +55,11 @@ public class User {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public static int getNextId() {
+        return nextId;
+    }
 }
