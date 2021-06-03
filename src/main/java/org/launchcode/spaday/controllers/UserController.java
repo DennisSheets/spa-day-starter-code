@@ -1,5 +1,6 @@
 package org.launchcode.spaday.controllers;
 
+import org.launchcode.spaday.data.UserData;
 import org.launchcode.spaday.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,22 @@ import javax.validation.Valid;
 @RequestMapping("user")
 public class UserController {
 
-   @GetMapping("/add")
+    @GetMapping
+    public String displayIndex(Model model) {
+        model.addAttribute("title","Home");
+        return "user/index";
+    }
+
+    @GetMapping ("users")
+    public String displayAllUsers(Model model) {
+        model.addAttribute("users", UserData.getAll());
+        model.addAttribute("title", "All Users");
+        return "user/users";
+    }
+
+
+
+   @GetMapping("add")
    public String displayAddUserForm(Model model) {
       model.addAttribute("title", "Add User");
       model.addAttribute(new User());
@@ -20,21 +36,37 @@ public class UserController {
    }
 
 
-   @PostMapping ("/add")
-   public String processAddUserForm(@ModelAttribute @Valid User user, String verify, Errors errors, Model model) {
-      model.addAttribute("verify", verify);
+
+
+   @PostMapping ("add")
+   public String processAddUserForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
+
       if (errors.hasErrors()) {
             model.addAttribute("title", "Add user -with errors");
+            model.addAttribute("user", newUser);
             return "user/add";
-      } else if (user.getPassword().equals(verify)) {
-            return "user/index";
       } else {
-            model.addAttribute("title", "Add user -bad pw");
-            model.addAttribute("error", "Passwords do not match");
-            return "user/add";
+          UserData.add(newUser);
+          return "redirect:";
       }
    }
 }
+
+
+//else if (newUser.getPassword().equals(verify)) {
+//        UserData.add(newUser);
+//
+//        return "redirect:";
+//        } else {
+//        model.addAttribute("title", "Add user -bad pw");
+//        model.addAttribute("error", "Passwords do not match");
+//        return "user/add";
+//        }
+
+
+
+
+
 //   @PostMapping
 //   public String processAddUserForm(@ModelAttribute @Valid User user, String verify, Errors errors, Model model) {
 //      model.addAttribute("verify", verify);

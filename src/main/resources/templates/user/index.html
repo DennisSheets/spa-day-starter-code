@@ -6,7 +6,11 @@
     <title>Welcome</title>
 </head>
 <body>
-    <p th:text = "'Welcome ' + ${user.username} + '!'"></p>
+
+    <p th:replace = "fragments :: header"></p>
+
+
+    <!-- <p th:text = "'Welcome ' + ${user.getUsername} + '!'"></p> -->
     <a th:href="@{/}">
         Select your spa services here
     </a>

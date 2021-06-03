@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title></title>
+</head>
+<body style="container">
+    <p th:replace = "fragments :: header"></p>
+
+    <table style="table">
+
+        <tr style="row">
+            <th>ID</th>
+            <th>username</th>
+            <th>password</th>
+        </tr>
+
+        <tr style="row" th:each="user : ${users}">
+            <td th:text="${user.getId}"></td>
+            <td th:text="${user.getUsername}"></td>
+            <td th:text="${user.getPassword}"></td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
